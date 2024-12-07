@@ -8,6 +8,7 @@ export default defineConfig({
     outDir: "docs",
   },
   server: {
-    port: 37898
-  }
+    port: 37898,
+  },
+  base: "urlaubs-planer",
 });
