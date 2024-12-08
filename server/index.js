@@ -7,7 +7,7 @@ import { bestJourneys, testData } from "./test-data.js";
 const app = express();
 
 app.use(express.json());
-app.use((req, res, next) => {
+app.use((_, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   next(null);
 });
@@ -19,24 +19,6 @@ app.get("/auth/login", getLogin);
 app.get("/auth/create-account", getCreateAccount);
 
 app.get("/auth/create-account", (req, res) => {});
-
-function searchTestData(query) {
-  const lowerCaseQuery = query.toLowerCase(); // Convert query to lowercase for case-insensitive search
-
-  return testData
-    .filter((item) => {
-      return (
-        item.title.toLowerCase().includes(lowerCaseQuery) ||
-        item.price.toLowerCase().includes(lowerCaseQuery) ||
-        item.location.toLowerCase().includes(lowerCaseQuery)
-      );
-    })
-    .map((item) => ({
-      title: item.title,
-      price: item.price,
-      location: item.location,
-    }));
-}
 
 app.get("/journey/:id", (req, res) => {
   res.json(testData[req.params.id]);
