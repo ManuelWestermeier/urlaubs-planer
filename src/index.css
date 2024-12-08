@@ -1,20 +1,32 @@
-.navbar svg {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    transition: all 0.3s ease-in-out;
-    width: 35px;
-    height: 35px;
-    padding: 7px;
+.hero-header {
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.5),
+            /* Dark overlay with transparency */
+            rgba(0, 0, 0, 0.5)),
+        url('/urlaubs-planer/img/header-bg.jpeg');
+    /* Replace with your image */
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 100px 0;
+    /* Adjust padding for height */
+    /* Apply filters */
 }
 
-.navbar .active svg {
-    transform: scale(1.2);
-    background-color: #ffffff20;
-    box-shadow: 0 0 20px 0 #ffffff20;
-    padding: 5px;
+.hero-header::backdrop {
+    filter: brightness(1.2) contrast(2);
 }
 
-.desktop-navbar svg {
-    margin-right: 10px;
+.hero-header h1 {
+    font-size: 3rem;
+    /* Bigger title */
+    z-index: 1;
+    /* Ensure the title is on top */
+}
+
+.hero-header p {
+    font-size: 1.25rem;
+    /* Larger description */
+    z-index: 1;
+    /* Ensure the description is on top */
 }

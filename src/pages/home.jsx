@@ -2,45 +2,65 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function Home() {
-  const isLoggedIn = false;
+  const isLoggedIn = false; // Update based on actual login state
 
   return (
-    <div>
-      <h3>
-        Erstelle Reisen,
-        <br />
-        Poste und Inhalte,
-        <br />
-        Spare Zeit!
-      </h3>
+    <div className="container py-5">
+      <header className="hero-header text-center mb-4">
+        <h1 className="display-4 text-white">
+          Erstelle Reisen, Poste und Spare Zeit!
+        </h1>
+        <p className="lead text-white">
+          Entdecke, erstelle und teile unvergessliche Reiseerlebnisse.
+        </p>
+      </header>
+
       {!isLoggedIn && (
-        <h5>
-          <br />
-          1. <Link to="/profile/create-account">
-            Acount Erstellen
-          </Link> oder <Link to="/profile/login">Anmelden</Link>
-          <br />
-          <br />
-        </h5>
+        <section className="mb-5">
+          <h5 className="text-center">
+            Du hast noch kein Konto?{" "}
+            <Link to="/profile/create-account" className="btn btn-link">
+              Account Erstellen
+            </Link>{" "}
+            oder{" "}
+            <Link to="/profile/login" className="btn btn-link">
+              Anmelden
+            </Link>
+          </h5>
+        </section>
       )}
-      <ul>
-        <li>
-          <Link to="/search">Nach Reisen suchen</Link>
-        </li>
-        <li>
-          <Link to="/search">Nutzer finden</Link>
-        </li>
-        {isLoggedIn && (
-          <li>
-            <Link to="/profile">Dein profiel Bearbeiten</Link>
+      <br />
+      <section className="mb-4">
+        <ul className="list-group">
+          <li className="list-group-item">
+            <Link to="/search" className="btn btn-outline-primary w-100">
+              Nach Reisen suchen
+            </Link>
           </li>
-        )}
-        {isLoggedIn && (
-          <li>
-            <Link to="/profile">Reisen erstellen</Link>
+          <li className="list-group-item">
+            <Link to="/search" className="btn btn-outline-primary w-100">
+              Nutzer finden
+            </Link>
           </li>
-        )}
-      </ul>
+          {isLoggedIn && (
+            <>
+              <li className="list-group-item">
+                <Link to="/profile" className="btn btn-outline-primary w-100">
+                  Dein Profil bearbeiten
+                </Link>
+              </li>
+              <li className="list-group-item">
+                <Link
+                  to="/create-journey"
+                  className="btn btn-outline-primary w-100"
+                >
+                  Reisen erstellen
+                </Link>
+              </li>
+            </>
+          )}
+        </ul>
+      </section>
     </div>
   );
 }
