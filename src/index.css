@@ -1,3 +1,22 @@
+.navbar svg {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    transition: all 0.3s ease-in-out;
+    width: 35px;
+    height: 35px;
+    padding: 7px;
+}
+.navbar .active svg {
+    transform: scale(1.2);
+    background-color: #ffffff20;
+    box-shadow: 0 0 20px 0 #ffffff20;
+    padding: 5px;
+}
+.desktop-navbar svg {
+    margin-right: 10px;
+}
+
 .hero-header {
     background-image:
         linear-gradient(rgba(0, 0, 0, 0.5),
