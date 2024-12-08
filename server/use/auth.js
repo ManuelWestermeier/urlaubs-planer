@@ -1,8 +1,5 @@
-import makePath from "../make-path.js";
-import { existsSync } from "fs";
+import { users } from "../data.js";
 import hash from "../hash.js";
-import fs from "fs/promises";
-import { join } from "path";
 
 export default async function useAuth(req, _, next) {
   if (!req.query?.user || !req?.query.password) {
@@ -11,15 +8,12 @@ export default async function useAuth(req, _, next) {
     return next(null);
   }
   const { user, password } = req.query;
-  const passwordFilePath = join("data", "user", makePath(user), "password.txt");
-  if (!existsSync(passwordFilePath)) {
+  if (!users[user]) {
     req.isAuth = false;
     req.authError = "user doesn't exist";
     return next(null);
   }
-  const isAuth =
-    (await fs.readFile(passwordFilePath, "ascii")) == hash(password);
-  req.isAuth = isAuth;
+  req.isAuth = users[user].password == hash(password);
   req.authError = null;
   next(null);
 }

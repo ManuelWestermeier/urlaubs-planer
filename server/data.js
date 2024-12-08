@@ -1,4 +1,4 @@
-export const testData = {
+export const journeys = {
   trip001: {
     title: "Bergwanderung im Harz",
     price: "249 €",
@@ -159,3 +159,5 @@ export const bestJourneys = [
   "trip005",
   "trip006",
 ];
+
+export const users = {};

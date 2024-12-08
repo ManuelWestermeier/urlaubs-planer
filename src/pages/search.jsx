@@ -47,47 +47,52 @@ export default function SearchJourneys() {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
           <div className="row">
-            {state == "error" && (
-              <div>
-                Fehler beim Laden der Reisen{" "}
-                <a
-                  href=""
-                  onClick={(e) => {
-                    e.preventDefault();
-                    location.reload();
-                  }}
-                >
-                  Neu laden
-                </a>
-              </div>
-            )}
-            {state == "loading" && <LoadingSpinner />}
-            {visibleJourneys == 0 && <p>keine Ergebnisse für diese Suche</p>}
             {!searchTerm.trim() ? (
               <BestJourneys />
             ) : (
-              visibleJourneys.map((journey) => (
-                <div key={journey.id} className="col-md-4 mb-4">
-                  <div className="card">
-                    <img
-                      src={journey.coverImage}
-                      className="card-img-top"
-                      alt={journey.title}
-                    />
-                    <div className="card-body">
-                      <h5 className="card-title">{journey.title}</h5>
-                      <p className="card-text">Ort: {journey.location}</p>
-                      <p className="card-text">Preis: {journey.price}</p>
-                      <NavLink
-                        to={`/journey/${journey.id}`}
-                        className="btn btn-primary"
-                      >
-                        Details anzeigen
-                      </NavLink>
+              <>
+                <h3>Suchergebnisse</h3>
+                {state == "error" && (
+                  <div>
+                    Fehler beim Laden der Reisen{" "}
+                    <a
+                      href=""
+                      onClick={(e) => {
+                        e.preventDefault();
+                        location.reload();
+                      }}
+                    >
+                      Neu laden
+                    </a>
+                  </div>
+                )}
+                {state == "loading" && <LoadingSpinner />}
+                {visibleJourneys == 0 && (
+                  <p>keine Ergebnisse für diese Suche</p>
+                )}
+                {visibleJourneys.map((journey) => (
+                  <div key={journey.id} className="col-md-4 mb-4">
+                    <div className="card">
+                      <img
+                        src={journey.coverImage}
+                        className="card-img-top"
+                        alt={journey.title}
+                      />
+                      <div className="card-body">
+                        <h5 className="card-title">{journey.title}</h5>
+                        <p className="card-text">Ort: {journey.location}</p>
+                        <p className="card-text">Preis: {journey.price}</p>
+                        <NavLink
+                          to={`/journey/${journey.id}`}
+                          className="btn btn-primary"
+                        >
+                          Details anzeigen
+                        </NavLink>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))
+                ))}
+              </>
             )}
           </div>
           {visibleCount < filteredJourneys.length && (

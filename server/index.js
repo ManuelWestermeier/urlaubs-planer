@@ -2,7 +2,7 @@ import useAuth from "./use/auth.js";
 import express from "express";
 import getCreateAccount from "./get/auth/create-account.js";
 import getLogin from "./get/auth/login.js";
-import { bestJourneys, testData } from "./test-data.js";
+import { bestJourneys, journeys } from "./data.js";
 
 const app = express();
 
@@ -21,7 +21,7 @@ app.get("/auth/create-account", getCreateAccount);
 app.get("/auth/create-account", (req, res) => {});
 
 app.get("/journey/:id", (req, res) => {
-  res.json(testData[req.params.id]);
+  res.json(journeys[req.params.id]);
 });
 
 app.get("/search-journeys", (req, res) => {
@@ -32,8 +32,8 @@ app.get("/search-journeys", (req, res) => {
   const lowerCaseQuery = search.toLowerCase(); // Convert query to lowercase for case-insensitive search
   const out = [];
 
-  for (const key of Object.keys(testData)) {
-    const item = testData[key];
+  for (const key of Object.keys(journeys)) {
+    const item = journeys[key];
     if (
       item.title.toLowerCase().includes(lowerCaseQuery) ||
       item.price.toLowerCase().includes(lowerCaseQuery) ||
@@ -56,7 +56,7 @@ app.get("/search-journeys", (req, res) => {
 app.get("/best-journeys", (req, res) => {
   res.json(
     bestJourneys.map((key) => {
-      const item = testData[key];
+      const item = journeys[key];
       return {
         id: key, // Use `key` as the id
         title: item.title,

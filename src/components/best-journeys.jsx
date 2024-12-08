@@ -12,6 +12,7 @@ export default function BestJourneys() {
 
   return (
     <div className="row">
+      <h3>beste Angebote</h3>
       {state == "loading" && <LoadingSpinner />}
       {journeys.map((journey) => (
         <div key={journey.id} className="col-md-4 mb-4">
