@@ -1,39 +1,35 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React from "react";
+import { Link, useParams } from "react-router-dom";
 import { Carousel } from "react-bootstrap"; // You can use any carousel library
+import useFetch from "../hooks/use-fetch";
+import getUrl from "../utils/get-url";
+import LoadingSpinner from "../components/loading-spinner";
 
 export default function Journey() {
   const { id } = useParams(); // Assuming the ID is passed via the URL
 
   // State to store the journey data
-  const [journey, setJourney] = useState(null);
+  const [journey, state] = useFetch(getUrl(`/journey/${id}`));
 
-  // Placeholder data (this can be replaced with a real API call)
-  const placeholderJourney = {
-    title: "Placeholder Title",
-    price: "€0.00",
-    images: [
-      { src: "https://via.placeholder.com/300x200", alt: "Image 1" },
-      { src: "https://via.placeholder.com/300x200", alt: "Image 2" },
-    ],
-    description: "This is a placeholder description.",
-    author: { id: "author123", name: "Placeholder Author" },
-    contactEmail: "example@example.com",
-    contactPhone: "+123456789",
-    bookingTime: "2024-12-31",
-  };
-
-  // Simulating fetching journey data based on ID (replace with real fetch logic)
-  useEffect(() => {
-    // Example: Fetch journey data from an API using the `id`
-    // fetchJourneyData(id).then((data) => setJourney(data));
-
-    // Using placeholder data in this example
-    setJourney(placeholderJourney);
-  }, [id]);
+  if (state == "error") {
+    return (
+      <div>
+        Fehler beim Laden der Reisedaten{" "}
+        <a
+          href=""
+          onClick={(e) => {
+            e.preventDefault();
+            location.reload();
+          }}
+        >
+          Neu laden
+        </a>
+      </div>
+    );
+  }
 
   if (!journey) {
-    return <div>Loading...</div>; // You can show a loading spinner or message
+    return <LoadingSpinner />; //<div>Loading...</div>; // You can show a loading spinner or message
   }
 
   const images = journey.images || [];
@@ -43,7 +39,7 @@ export default function Journey() {
   const author = journey.author || "";
   const contactEmail = journey.contactEmail || "";
   const contactPhone = journey.contactPhone || "";
-  const bookingTime = journey.bookingTime || "Unspecified";
+  const bookingTime = journey.bookingTime || "Unbestimmt";
 
   const renderDescription = () => {
     return description.split("\n").map((line, index) => (
@@ -51,7 +47,9 @@ export default function Journey() {
         {line.split(" ").map((word, idx) => {
           const emailRegex =
             /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/;
-          const phoneRegex = /(\+?[0-9]{1,4}[\s-])?(\(?\d+\)?[\s-]?)?[\d\s-]+/;
+          const phoneRegex =
+            /(?:\+?\d{1,4}[^\d\s]?)?(\(?\d+\)?[\s-]?)?[\d\s-]{5,}/;
+          const urlRegex = /https?:\/\/[^\s]+/; // Regex to match URLs starting with http:// or https://
 
           if (emailRegex.test(word)) {
             return (
@@ -69,6 +67,19 @@ export default function Journey() {
             );
           }
 
+          if (urlRegex.test(word)) {
+            return (
+              <a
+                href={word}
+                key={idx}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {word}
+              </a>
+            );
+          }
+
           return word + " ";
         })}
       </p>
@@ -80,7 +91,7 @@ export default function Journey() {
       <div className="row justify-content-center">
         <div className="col-md-8">
           <h1>{title}</h1>
-          <h3>{price}</h3>
+          <h3>{price} €</h3>
 
           {/* Image slider */}
           <Carousel>
@@ -104,9 +115,9 @@ export default function Journey() {
           {/* Author Link */}
           <p>
             <strong>Autor:</strong>{" "}
-            <a href={`/profile/${author.id}`} className="btn-link">
+            <Link to={`/profile/${author.id}`} className="btn-link">
               {author.name}
-            </a>
+            </Link>
           </p>
 
           {/* Contact Information */}
@@ -126,9 +137,9 @@ export default function Journey() {
 
           {/* Booking Button */}
           <div className="text-center mt-4">
-            <a href={`/book/${id}`} className="btn btn-primary">
+            <Link to={`/book/${id}`} className="btn btn-primary">
               Jetzt buchen
-            </a>
+            </Link>
           </div>
         </div>
       </div>

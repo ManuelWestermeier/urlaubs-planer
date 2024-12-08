@@ -68,10 +68,10 @@ function Login() {
               </form>
 
               <div className="mt-3 text-center">
-                <NavLink to="/profile/create-account" className="btn btn-link">
+                <NavLink to="/profile/create-account" className="btn">
                   Konto erstellen
                 </NavLink>
-                <NavLink to="/profile/login" className="btn btn-link">
+                <NavLink to="/profile/login" className="btn">
                   Login
                 </NavLink>
               </div>

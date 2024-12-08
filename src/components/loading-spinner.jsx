@@ -1,3 +1,9 @@
 export default function LoadingSpinner() {
-  return <span className="loading-spinner" title="loading..."></span>;
+  return (
+    <div title="läd..." className="d-flex justify-content-center">
+      <div className="spinner-border" role="status">
+        <span className="visually-hidden">läd...</span>
+      </div>
+    </div>
+  );
 }
