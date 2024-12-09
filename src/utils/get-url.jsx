@@ -6,5 +6,5 @@ export default function getUrl(pathName = "/", searchParams = {}) {
     url.searchParams.set(key, searchParams[key]);
   });
 
-  return url;
+  return url.toString();
 }

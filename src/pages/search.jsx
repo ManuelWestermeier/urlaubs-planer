@@ -13,9 +13,11 @@ export default function SearchJourneys() {
   ];
   const [visibleCount, setVisibleCount] = useState(6); // Number of items to render initially
   const [journeys, state] = useFetch(
-    getUrl(`/search-journeys`, {
-      search: searchTerm,
-    }),
+    !searchTerm
+      ? false
+      : getUrl(`/search-journeys`, {
+          search: searchTerm,
+        }),
     []
   );
 
@@ -44,10 +46,10 @@ export default function SearchJourneys() {
             className="form-control mb-4"
             placeholder="Suche nach Reisen/Orten/Preisen..."
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={(e) => setSearchTerm(e.target.value.trim())}
           />
           <div className="row">
-            {!searchTerm.trim() ? (
+            {!searchTerm ? (
               <BestJourneys />
             ) : (
               <>

@@ -7,8 +7,26 @@ import useFetch from "../hooks/use-fetch";
 export default function BestJourneys() {
   const [journeys, state] = useFetch(getUrl("/best-journeys"));
 
-  if (state == "error") return "error";
+  if (state == "error")
+    return (
+      <div>
+        Fehler beim Laden der Reisen{" "}
+        <a
+          href=""
+          onClick={(e) => {
+            e.preventDefault();
+            location.reload();
+          }}
+        >
+          Neu laden
+        </a>
+      </div>
+    );
+
   if (!journeys) return <LoadingSpinner />;
+
+  if (!Array.isArray(journeys) || journeys.length === 0)
+    return <div>Keine Reisen verfügbar.</div>;
 
   return (
     <div className="row">

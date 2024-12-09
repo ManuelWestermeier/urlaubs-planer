@@ -16,7 +16,7 @@ import Footer from "./components/footer";
 
 export default function App() {
   return (
-    <div>
+    <>
       <DesktopNavbar />
       <MobileNavbar />
       <Routes>
@@ -32,6 +32,6 @@ export default function App() {
         <Route path="*" element={<PageNotFound />} />
       </Routes>
       <Footer />
-    </div>
+    </>
   );
 }

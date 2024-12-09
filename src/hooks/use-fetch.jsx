@@ -6,6 +6,7 @@ export default function useFetch(url = "", defaultData = null) {
   const [state, setState] = useState("loading...");
 
   useEffect(() => {
+    if (!url) return;
     async function fetchData() {
       try {
         const response = await fetch(url);
@@ -18,7 +19,7 @@ export default function useFetch(url = "", defaultData = null) {
       }
     }
     fetchData();
-  }, [url, state]);
+  }, [url]);
 
   return [res, state];
 }
