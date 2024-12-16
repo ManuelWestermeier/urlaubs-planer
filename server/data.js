@@ -183,9 +183,16 @@ var isSaving = false;
 setInterval(async () => {
   if (isSaving) return;
   isSaving = true;
-  await githubFS.writeFile("journeys.data", JSON.stringify(journeys));
-  await githubFS.writeFile("best-journeys.data", JSON.stringify(bestJourneys));
-  await githubFS.writeFile("users.data", JSON.stringify(users));
+  try {
+    await githubFS.writeFile("journeys.data", JSON.stringify(journeys));
+    await githubFS.writeFile(
+      "best-journeys.data",
+      JSON.stringify(bestJourneys)
+    );
+    await githubFS.writeFile("users.data", JSON.stringify(users));
+  } catch (error) {
+    console.log(error);
+  }
   isSaving = false;
   console.log("Data saved to GitHub");
 }, 100_000);
