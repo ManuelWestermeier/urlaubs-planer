@@ -14,7 +14,7 @@ const githubFS = new GitHubFS({
   encryptionKey: process.env.ENCRYPTION_KEY, // Use a strong, secure key
 });
 
-var reset = true;
+var reset = false;
 
 export const journeys = !reset
   ? JSON.parse(await githubFS.readFile("journeys.data"))
@@ -179,7 +179,7 @@ export const users = !reset
   ? JSON.parse(await githubFS.readFile("users.data"))
   : {};
 
-var isSaving = true;
+var isSaving = false;
 setInterval(async () => {
   if (isSaving) return;
   isSaving = true;
