@@ -14,13 +14,7 @@ const githubFS = new GitHubFS({
   encryptionKey: process.env.ENCRYPTION_KEY, // Use a strong, secure key
 });
 
-var reset = false;
-
-try {
-  await githubFS.readFile("journeys.data");
-} catch (error) {
-  reset = true;
-}
+var reset = true;
 
 export const journeys = !reset
   ? JSON.parse(await githubFS.readFile("journeys.data"))
