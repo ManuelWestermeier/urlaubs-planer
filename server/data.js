@@ -179,7 +179,7 @@ export const users = !reset
   ? JSON.parse(await githubFS.readFile("users.data"))
   : {};
 
-var isSaving = false;
+var isSaving = true;
 setInterval(async () => {
   if (isSaving) return;
   isSaving = true;
