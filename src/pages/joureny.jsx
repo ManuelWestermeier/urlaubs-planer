@@ -4,8 +4,10 @@ import { Carousel } from "react-bootstrap"; // You can use any carousel library
 import useFetch from "../hooks/use-fetch";
 import getUrl from "../utils/get-url";
 import LoadingSpinner from "../components/loading-spinner";
+import useTopScroll from "../hooks/use-top-scroll";
 
 export default function Journey() {
+  useTopScroll();
   const { id } = useParams(); // Assuming the ID is passed via the URL
 
   // State to store the journey data

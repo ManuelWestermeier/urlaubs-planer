@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import useTopScroll from "../hooks/use-top-scroll";
 
 export default function Home() {
+  useTopScroll();
   const isLoggedIn = false; // Update based on actual login state
 
   return (

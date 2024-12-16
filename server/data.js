@@ -1,3 +1,19 @@
+import GitHubFS from "gh-fs";
+import { config } from "dotenv";
+config();
+
+// Initialize GitHubFS instance
+const githubFS = new GitHubFS({
+  authToken: process.env.GITHUB_AUTH_TOKEN,
+  owner: "manuelwestermeier",
+  repo: "urlaubsplaner-data",
+  defaultCommitter: {
+    email: "westermeier111@gmail.com",
+    name: "Manuel Westermeier",
+  },
+  encryptionKey: process.env.ENCRYPTION_KEY, // Use a strong, secure key
+});
+
 export const journeys = {
   trip001: {
     title: "Bergwanderung im Harz",
@@ -161,3 +177,13 @@ export const bestJourneys = [
 ];
 
 export const users = {};
+
+var isSaving = false;
+setInterval(async () => {
+  if (isSaving) return;
+  isSaving = true;
+  await githubFS.writeFile("journeys.data", JSON.stringify(journeys));
+  await githubFS.writeFile("best-journeys.data", JSON.stringify(bestJourneys));
+  await githubFS.writeFile("users.data", JSON.stringify(users));
+  isSaving = false;
+}, 100_000);

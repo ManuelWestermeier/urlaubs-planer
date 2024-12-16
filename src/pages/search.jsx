@@ -4,8 +4,10 @@ import LoadingSpinner from "../components/loading-spinner";
 import useFetch from "../hooks/use-fetch";
 import getUrl from "../utils/get-url";
 import BestJourneys from "../components/best-journeys";
+import useTopScroll from "../hooks/use-top-scroll";
 
 export default function SearchJourneys() {
+  useTopScroll();
   const [_searchTerm, _setSearchTerm] = useSearchParams({ search: "" });
   const [searchTerm, setSearchTerm] = [
     _searchTerm.get("search"),

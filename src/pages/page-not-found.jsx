@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import useTopScroll from "../hooks/use-top-scroll";
 
 export default function PageNotFound() {
+  useTopScroll();
   const location = useLocation();
   const navigate = useNavigate();
   const [secounds, setSecounds] = useState(30);
