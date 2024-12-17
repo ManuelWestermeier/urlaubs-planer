@@ -198,6 +198,6 @@ const saveData = async () => {
   console.log("Data saved to GitHub");
 };
 
-setInterval(saveData, 1_000_000);
+setInterval(saveData, process.env.STORE_INTERVAL || 1_000_000);
 process.on("exit", saveData);
 // saveData()
