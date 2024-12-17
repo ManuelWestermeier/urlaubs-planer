@@ -1,17 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import useTopScroll from "../hooks/use-top-scroll";
+import { useAuth } from "../providers/auth";
 
 export default function Home() {
   useTopScroll();
-  const isLoggedIn = false; // Update based on actual login state
+  const isLoggedIn = useAuth().isAuthenticated; // Update based on actual login state
 
   return (
     <div className="container py-5">
       <header className="hero-header text-center mb-4">
-        <h1 className="display-4">
-          Erstelle Reisen, Poste und Spare Zeit!
-        </h1>
+        <h1 className="display-4">Erstelle Reisen, Poste und Spare Zeit!</h1>
         <p className="lead">
           Entdecke, erstelle und teile unvergessliche Reiseerlebnisse.
         </p>

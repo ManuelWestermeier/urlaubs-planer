@@ -1,12 +1,16 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import getUrl from "../../utils/get-url";
+import { useAuth } from "../../providers/auth";
 
 export default function CreateAccount() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const auth = useAuth();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!username || !password) {
@@ -14,9 +18,21 @@ export default function CreateAccount() {
       return;
     }
 
-    // Perform account creation logic here
-    console.log("Konto erstellt:", { username, password });
-    setError(""); // Clear the error on success
+    const res = await fetch(
+      getUrl("/auth/create-account", { user: username, password })
+    );
+    const data = await res.json();
+    console.log(data);
+
+    if (data?.error || !data?.auth) {
+      setError(data.error ?? "Ein fehler is passiert");
+      return;
+    }
+
+    auth.login(username, password); // Login the user using the provided credentials
+
+    setError("Suceed"); // Clear the error on success
+    navigate("/profile");
   };
 
   return (

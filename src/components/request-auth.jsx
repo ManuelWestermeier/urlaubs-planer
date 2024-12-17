@@ -1,6 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function RequestAuth() {
+  const naviagte = useNavigate();
+  const auth = useAuth();
+
+  if (auth.isAuthenticated) {
+    naviagte("/");
+  }
+
   return (
     <div>
       <p>Wichtig:</p>

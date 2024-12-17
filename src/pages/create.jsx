@@ -1,10 +1,11 @@
 import RequestAuth from "../components/request-auth";
 import React from "react";
+import { useAuth } from "../providers/auth";
 
 export default function Create() {
-  const isLoggedIn = false;
+  const auth = useAuth();
 
-  if (!isLoggedIn) return <RequestAuth />;
+  if (!auth.isAuthenticated) return <RequestAuth />;
 
   return (
     <div>

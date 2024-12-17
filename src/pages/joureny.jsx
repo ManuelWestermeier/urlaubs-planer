@@ -89,7 +89,7 @@ export default function Journey() {
   };
 
   return (
-    <div className="container mt-5">
+    <div className="container">
       <div className="row justify-content-center">
         <div className="col-md-8">
           <h1>{title}</h1>

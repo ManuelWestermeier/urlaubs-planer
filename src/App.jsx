@@ -13,10 +13,11 @@ import Login from "./pages/profile/login";
 import RequestAuth from "./components/request-auth";
 import Journey from "./pages/joureny";
 import Footer from "./components/footer";
+import { AuthProvider } from "./providers/auth";
 
 export default function App() {
   return (
-    <>
+    <AuthProvider>
       <DesktopNavbar />
       <MobileNavbar />
       <Routes>
@@ -32,6 +33,6 @@ export default function App() {
         <Route path="*" element={<PageNotFound />} />
       </Routes>
       <Footer />
-    </>
+    </AuthProvider>
   );
 }
