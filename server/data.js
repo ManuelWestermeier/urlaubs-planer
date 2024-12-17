@@ -200,3 +200,4 @@ const saveData = async () => {
 
 setInterval(saveData, 1_000_000);
 process.on("exit", saveData);
+// saveData()

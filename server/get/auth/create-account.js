@@ -11,7 +11,16 @@ export default async function getCreateAccount(req, res) {
 
   const { user, password } = req.query;
 
-  users[user] = { password: hash(password) };
+  users[user] = {
+    password: hash(password),
+    name: user,
+    email: "",
+    isCreator: false,
+    trips: [],
+    booked: [],
+    subscriptions: [],
+    money: 0,
+  };
 
   res.json({
     createdAccount: true,
