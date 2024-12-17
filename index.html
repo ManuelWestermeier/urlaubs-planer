@@ -13,6 +13,9 @@
 <body data-bs-theme="dark">
   <div id="root" class="container"></div>
   <script type="module" src="/src/main.jsx"></script>
+  <script>
+    document.body.setAttribute("data-bs-theme", (new URL(document.location)).searchParams.get("theme") == "light" ? "light" : "dark");
+  </script>
 </body>
 
 </html>

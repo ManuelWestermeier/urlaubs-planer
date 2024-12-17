@@ -7,29 +7,44 @@
     height: 35px;
     padding: 7px;
 }
+
 .navbar .active svg {
     transform: scale(1.2);
     background-color: #ffffff20;
     box-shadow: 0 0 20px 0 #ffffff20;
     padding: 5px;
 }
+
 .desktop-navbar svg {
     margin-right: 10px;
 }
 
+.navbar {
+    background-color: var(--bs-body-bg);
+    box-shadow: 0 0 20px 20px var(--bs-body-bg);
+}
+
 .hero-header {
+    background-size: cover;
+    background-position: center;
+    padding: min(250px, 20dvh) 0;
+}
+
+[data-bs-theme="dark"] .hero-header {
     background-image:
         linear-gradient(rgba(0, 0, 0, 0.5),
             /* Dark overlay with transparency */
             rgba(0, 0, 0, 0.5)),
-        url('/urlaubs-planer/img/header-bg.jpeg');
-    /* Replace with your image */
-    background-size: cover;
-    background-position: center;
-    color: white;
-    padding: 100px 0;
-    /* Adjust padding for height */
-    /* Apply filters */
+        url('/urlaubs-planer/img/header-bg-dark.jpeg');
+}
+
+[data-bs-theme="light"] .hero-header {
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.5),
+            /* Dark overlay with transparency */
+            rgba(0, 0, 0, 0.5)),
+        url('/urlaubs-planer/img/header-bg-light.jpeg');
+    color: var(--bs-body-bg);
 }
 
 .hero-header::backdrop {
@@ -48,4 +63,8 @@
     /* Larger description */
     z-index: 1;
     /* Ensure the description is on top */
+}
+
+[data-bs-theme="dark"] svg {
+    fill: #e8eaed;
 }

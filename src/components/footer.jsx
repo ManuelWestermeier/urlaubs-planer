@@ -13,7 +13,7 @@ export default function Footer() {
       <br />
       <br />
       <br />
-      <footer className="text-white py-4 mt-5">
+      <footer className="py-4 mt-5">
         <div className="container">
           <div className="row">
             <div className="col-md-4">

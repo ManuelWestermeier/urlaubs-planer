@@ -9,10 +9,10 @@ export default function Home() {
   return (
     <div className="container py-5">
       <header className="hero-header text-center mb-4">
-        <h1 className="display-4 text-white">
+        <h1 className="display-4">
           Erstelle Reisen, Poste und Spare Zeit!
         </h1>
-        <p className="lead text-white">
+        <p className="lead">
           Entdecke, erstelle und teile unvergessliche Reiseerlebnisse.
         </p>
       </header>
