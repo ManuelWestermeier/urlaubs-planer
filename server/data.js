@@ -180,7 +180,8 @@ export const users = !reset
   : {};
 
 var isSaving = false;
-setInterval(async () => {
+const saveData = async () => {
+  console.log("Saving data to Github...");
   if (isSaving) return;
   isSaving = true;
   try {
@@ -195,4 +196,7 @@ setInterval(async () => {
   }
   isSaving = false;
   console.log("Data saved to GitHub");
-}, 100_000);
+};
+
+setInterval(saveData, 1_000_000);
+process.on("exit", saveData);

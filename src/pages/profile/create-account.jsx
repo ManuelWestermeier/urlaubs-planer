@@ -22,7 +22,6 @@ export default function CreateAccount() {
       getUrl("/auth/create-account", { user: username, password })
     );
     const data = await res.json();
-    console.log(data);
 
     if (data?.error || !data?.auth) {
       setError(data.error ?? "Ein fehler is passiert");

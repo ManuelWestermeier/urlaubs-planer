@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../providers/auth";
 
 export default function RequestAuth() {
   const naviagte = useNavigate();
