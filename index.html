@@ -7,6 +7,10 @@
   <title>Urlaubsplaner</title>
   <script>
     window.apiUrl = location.protocol == "http:" ? "http://localhost:8080" : "https://urlaubs-planer.onrender.com";
+    if (!localStorage.getItem("user-ok") && !confirm("Diese Website is ein Schülerprojeckt. Sie ist ein Portotyp. Sie können auf dieser Website nichts kaufen.")) {
+      location.reload();
+    }
+    else localStorage.setItem("user-ok", "true");
   </script>
 </head>
 

@@ -23,14 +23,13 @@ export default function CreateAccount() {
     );
     const data = await res.json();
 
-    if (data?.error || !data?.auth) {
+    if (data.error || !data?.createdAccount) {
       setError(data.error ?? "Ein fehler is passiert");
       return;
     }
-
+    
     auth.login(username, password); // Login the user using the provided credentials
-
-    setError("Suceed"); // Clear the error on success
+    
     navigate("/profile");
   };
 
